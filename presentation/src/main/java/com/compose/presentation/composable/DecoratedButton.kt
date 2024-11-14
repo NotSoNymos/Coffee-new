@@ -97,20 +97,22 @@ fun DecoratedButton(
     text: String,
     modifier: Modifier = Modifier,
     buttonType: DecoratedButtonType = Default,
-    shape: Shape = RectangleShape,
+    shape: Shape = RoundedCornerShape(10.dp),
     onClick: () -> Unit,
 ) {
-    Button(
-        modifier = modifier.then(DecoratedButtonValues.getDefaultModifier(buttonType)),
-        shape = shape,
-        colors = DecoratedButtonValues.getDefaultColor(buttonType),
-        onClick = onClick
-    ) {
-        Text(
-            text,
-            style = CoffeeTheme.typography.displayMedium,
-            color = DecoratedButtonValues.getTextColor(buttonType)
-        )
+    CoffeeTheme {
+        Button(
+            modifier = modifier.then(DecoratedButtonValues.getDefaultModifier(buttonType)),
+            shape = shape,
+            colors = DecoratedButtonValues.getDefaultColor(buttonType),
+            onClick = onClick
+        ) {
+            Text(
+                text,
+                style = CoffeeTheme.typography.displayMedium,
+                color = DecoratedButtonValues.getTextColor(buttonType)
+            )
+        }
     }
 }
 

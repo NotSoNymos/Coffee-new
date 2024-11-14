@@ -11,8 +11,12 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.compose.data.utils.Constants
 import com.compose.presentation.composable.CustomShape
 import com.compose.presentation.composable.OnboardingItem
@@ -22,7 +26,7 @@ import com.tbuonomo.viewpagerdotsindicator.compose.model.DotGraphic
 import com.tbuonomo.viewpagerdotsindicator.compose.type.WormIndicatorType
 
 @Composable
-fun PresentationScreen(modifier: Modifier = Modifier) {
+fun PresentationScreen(navController: NavHostController, modifier: Modifier = Modifier) {
     val pagerState = rememberPagerState(pageCount = {
         3
     })
@@ -31,7 +35,7 @@ fun PresentationScreen(modifier: Modifier = Modifier) {
         HorizontalPager(state = pagerState, pageSpacing = 20.dp) { page ->
             OnboardingItem(
                 data = data[page],
-                isLast = (pagerState.pageCount - 1 == pagerState.currentPage) && data[page] == data.last()
+                navController = navController
             )
         }
         Row(
@@ -46,7 +50,7 @@ fun PresentationScreen(modifier: Modifier = Modifier) {
                 dotCount = pagerState.pageCount,
                 type = WormIndicatorType(
                     dotsGraphic = DotGraphic(
-                        color = CoffeeTheme.colors.primary,
+                        color = Color.White,
                         shape = CustomShape, size = 15.dp
                     ), wormDotGraphic = DotGraphic(
                         color = CoffeeTheme.colors.primary,
@@ -65,5 +69,7 @@ fun PresentationScreen(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun PresentationScreenPreview() {
-    PresentationScreen()
+    CoffeeTheme {
+        PresentationScreen(rememberNavController())
+    }
 }

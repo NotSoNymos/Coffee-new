@@ -20,12 +20,15 @@ object Constants {
             "onboarding_third_background",
             "shader",
             "Unlock bean secrets",
-            "Lorem ipsum dolor sit amet consectetur. Vestibulum eget blandit mattis"
+            "Lorem ipsum dolor sit amet consectetur. Vestibulum eget blandit mattis",
+            true
         )
     )
 }
 
 enum class Destinations {
     Main,
-    Onboarding
+    Onboarding,
+    Login,
+    Registration
 }

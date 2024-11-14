@@ -43,9 +43,9 @@ import kotlinx.coroutines.flow.asStateFlow
 
 @Immutable
 class InputFieldOptions(
-    val containerColor: Color = Color.Unspecified,
+    val containerColor: Color = Grey,
     val textFieldColors: TextFieldColors? = null,
-    val paddingValues: PaddingValues = PaddingValues()
+    val paddingValues: PaddingValues = PaddingValues(start = 20.dp)
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -84,7 +84,7 @@ fun InputField(
     value: String,
     options: InputFieldOptions,
     modifier: Modifier = Modifier,
-    shape: Shape = RectangleShape,
+    shape: Shape = RoundedCornerShape(10.dp),
     placeholder: String = "",
     onValueChange: (String) -> Unit
 ) {
@@ -138,16 +138,13 @@ internal class InputFieldSample {
     @Preview
     @Composable
     private fun InputFieldPreview() {
+        CoffeeTheme {
         val sampleViewModel = SampleViewModel()
         Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
             Column {
                 InputField(
                     value = sampleViewModel.state.collectAsState().value.data,
-                    options = InputFieldOptions(
-                        containerColor = Grey,
-                        paddingValues = PaddingValues(start = 20.dp)
-                    ),
-                    shape = RoundedCornerShape(15.dp),
+                    options = InputFieldOptions(),
                     modifier = Modifier
                         .height(60.dp)
                         .fillMaxWidth(),
@@ -156,5 +153,6 @@ internal class InputFieldSample {
                 )
             }
         }
+            }
     }
 }

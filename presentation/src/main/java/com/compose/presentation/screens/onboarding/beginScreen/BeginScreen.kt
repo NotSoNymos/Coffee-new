@@ -20,6 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import com.compose.data.utils.Destinations
 import com.compose.presentation.R
 import com.compose.presentation.composable.DecoratedButton
+import com.compose.presentation.theme.CoffeeTheme
 
 @Composable
 fun BeginScreen(navController: NavHostController, modifier: Modifier = Modifier) {
@@ -42,11 +43,10 @@ fun BeginScreen(navController: NavHostController, modifier: Modifier = Modifier)
         )
         Spacer(modifier = Modifier.height(335.dp))
         DecoratedButton(
-            "Get Started",
+            text = "Get Started",
             modifier = Modifier
                 .height(60.dp)
-                .width(300.dp),
-            shape = RoundedCornerShape(15.dp)
+                .width(300.dp)
         ) {
             navController.navigate(Destinations.Onboarding.name)
         }
@@ -56,5 +56,7 @@ fun BeginScreen(navController: NavHostController, modifier: Modifier = Modifier)
 @Preview
 @Composable
 private fun BeginScreenPreview() {
-    BeginScreen(rememberNavController())
+    CoffeeTheme {
+        BeginScreen(rememberNavController())
+    }
 }

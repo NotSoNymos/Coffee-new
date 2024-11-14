@@ -16,12 +16,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.compose.data.models.OnboardingItemData
+import com.compose.data.utils.Destinations
 import com.compose.presentation.theme.CoffeeTheme
 
 @Composable
 fun OnboardingItem(
-    data: OnboardingItemData, modifier: Modifier = Modifier, isLast: Boolean = false
+    data: OnboardingItemData,
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+    isLast: Boolean = false
 ) {
     val context = LocalContext.current
     Column(
@@ -29,18 +35,16 @@ fun OnboardingItem(
             .fillMaxSize()
             .paint(
                 painter = painterResource(
-                    context.resources
-                        .getIdentifier(
-                            data.backgroundIdentifier, "drawable", "com.compose.presentation"
-                        )
+                    context.resources.getIdentifier(
+                        data.backgroundIdentifier, "drawable", "com.compose.presentation"
+                    )
                 ), contentScale = ContentScale.FillBounds
             )
             .paint(
                 painter = painterResource(
-                    context.resources
-                        .getIdentifier(
-                            data.shaderIdentifier, "drawable", "com.compose.presentation"
-                        )
+                    context.resources.getIdentifier(
+                        data.shaderIdentifier, "drawable", "com.compose.presentation"
+                    )
                 ), contentScale = ContentScale.FillBounds
             ), horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -53,19 +57,30 @@ fun OnboardingItem(
             text = data.description, style = CoffeeTheme.typography.labelSmall, textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(275.dp))
-        if (isLast) {
-            DecoratedButton(
-                "Register", modifier = Modifier
-                    .width(300.dp)
-                    .height(60.dp)
-            ) { }
+
+        if (data.isButtonVisible) {
+            EnterAnimation {
+                DecoratedButton(
+                    text = "Register",
+                    modifier = Modifier
+                        .width(300.dp)
+                        .height(60.dp),
+                ) {
+                    navController.navigate(Destinations.Registration.name)
+                }
+            }
             Spacer(modifier = Modifier.height(10.dp))
-            DecoratedButton(
-                "Sign in", modifier = Modifier
-                    .width(300.dp)
-                    .height(60.dp),
-                DecoratedButtonType.Empty
-            ) { }
+            EnterAnimation {
+                DecoratedButton(
+                    text = "Sign in",
+                    modifier = Modifier
+                        .width(300.dp)
+                        .height(60.dp),
+                    buttonType = DecoratedButtonType.Empty
+                ) {
+                    navController.navigate(Destinations.Login.name)
+                }
+            }
         }
     }
 }
@@ -73,5 +88,9 @@ fun OnboardingItem(
 @Preview
 @Composable
 private fun ItemPreview() {
-    OnboardingItem(OnboardingItemData(), isLast = true)
+    CoffeeTheme {
+        OnboardingItem(
+            data = OnboardingItemData(), navController = rememberNavController(), isLast = true
+        )
+    }
 }

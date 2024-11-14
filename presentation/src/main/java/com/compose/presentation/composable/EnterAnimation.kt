@@ -27,7 +27,7 @@ fun EnterAnimation(content: @Composable () -> Unit) {
         visibleState = MutableTransitionState(
             initialState = false
         ).apply { targetState = true },
-        enter = slideInHorizontally(initialOffsetX = { 150 }),
+        enter = slideInHorizontally(initialOffsetX = { 1550 }),
         exit = slideOutHorizontally(),
     ) {
         content()

@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.compose.data.utils.Destinations
 import com.compose.presentation.screens.onboarding.beginScreen.BeginScreen
+import com.compose.presentation.screens.onboarding.loginScreen.LoginScreen
 import com.compose.presentation.screens.onboarding.presentationScreen.PresentationScreen
 
 @Composable
@@ -20,7 +21,18 @@ fun NavGraph(navController: NavHostController) {
         }
         composable(Destinations.Onboarding.name) {
             EnterAnimation {
-                PresentationScreen()
+                PresentationScreen(navController)
+            }
+        }
+        composable(Destinations.Login.name) {
+            EnterAnimation {
+                LoginScreen()
+            }
+        }
+
+        composable(Destinations.Registration.name) {
+            EnterAnimation {
+
             }
         }
     }
