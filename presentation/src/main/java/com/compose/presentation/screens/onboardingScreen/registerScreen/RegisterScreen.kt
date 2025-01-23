@@ -1,4 +1,4 @@
-package com.compose.presentation.screens.onboarding.registerScreen
+package com.compose.presentation.screens.onboardingScreen.registerScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

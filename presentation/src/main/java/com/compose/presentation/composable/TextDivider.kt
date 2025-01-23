@@ -15,7 +15,9 @@ fun TextDivider(modifier: Modifier = Modifier) {
     Row(modifier = Modifier
         .fillMaxWidth()
         .drawBehind {
-            drawLine(Color.Yellow, Offset(100f,100f), Offset(200f,200f))
+            drawLine(Color.Yellow,
+                Offset(100f,100f),
+                Offset(200f,200f))
         }) {
 
     }

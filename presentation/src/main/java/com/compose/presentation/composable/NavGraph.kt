@@ -5,9 +5,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.compose.data.utils.Destinations
-import com.compose.presentation.screens.onboarding.beginScreen.BeginScreen
-import com.compose.presentation.screens.onboarding.loginScreen.LoginScreen
-import com.compose.presentation.screens.onboarding.presentationScreen.PresentationScreen
+import com.compose.presentation.screens.onboardingScreen.beginScreen.BeginScreen
+import com.compose.presentation.screens.onboardingScreen.loginScreen.LoginScreen
+import com.compose.presentation.screens.onboardingScreen.presentationScreen.PresentationScreen
 
 @Composable
 fun NavGraph(navController: NavHostController) {

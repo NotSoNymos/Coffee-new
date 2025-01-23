@@ -6,6 +6,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 val Golden = Color(0xFFCE9760)
+val LightBrown = Color(0xFFCE9760)
 val Brown = Color(0xFF543A20)
 val Grey = Color(0xFF16181C)
 val LightGrey = Color(0xFF828282)
