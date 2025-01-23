@@ -25,10 +25,9 @@ object Constants {
         )
     )
 }
-
-enum class Destinations {
-    Main,
-    Onboarding,
-    Login,
-    Registration
+sealed class Destinations{
+    object Main
+    object Onboarding
+    object Login
+    object Registration
 }

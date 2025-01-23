@@ -47,7 +47,7 @@ fun BeginScreen(navController: NavHostController, modifier: Modifier = Modifier)
                 .height(60.dp)
                 .width(300.dp)
         ) {
-            navController.navigate(Destinations.Onboarding.name)
+            navController.navigate(Destinations.Onboarding)
         }
     }
 }

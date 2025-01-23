@@ -1,5 +1,6 @@
 package com.compose.presentation.composable
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,12 +23,12 @@ import com.compose.data.models.OnboardingItemData
 import com.compose.data.utils.Destinations
 import com.compose.presentation.theme.CoffeeTheme
 
+@SuppressLint("DiscouragedApi")
 @Composable
 fun OnboardingItem(
     data: OnboardingItemData,
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    isLast: Boolean = false
 ) {
     val context = LocalContext.current
     Column(
@@ -66,7 +67,7 @@ fun OnboardingItem(
                         .width(300.dp)
                         .height(60.dp),
                 ) {
-                    navController.navigate(Destinations.Registration.name)
+                    navController.navigate(Destinations.Registration)
                 }
             }
             Spacer(modifier = Modifier.height(10.dp))
@@ -78,7 +79,7 @@ fun OnboardingItem(
                         .height(60.dp),
                     buttonType = DecoratedButtonType.Empty
                 ) {
-                    navController.navigate(Destinations.Login.name)
+                    navController.navigate(Destinations.Login)
                 }
             }
         }
@@ -90,7 +91,7 @@ fun OnboardingItem(
 private fun ItemPreview() {
     CoffeeTheme {
         OnboardingItem(
-            data = OnboardingItemData(), navController = rememberNavController(), isLast = true
+            data = OnboardingItemData(), navController = rememberNavController()
         )
     }
 }

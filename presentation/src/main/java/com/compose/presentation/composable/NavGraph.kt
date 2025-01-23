@@ -12,25 +12,27 @@ import com.compose.presentation.screens.onboardingScreen.presentationScreen.Pres
 @Composable
 fun NavGraph(navController: NavHostController) {
     NavHost(
-        navController = navController, startDestination = Destinations.Onboarding.name
+        navController = navController, startDestination = Destinations.Onboarding
     ) {
-        composable(Destinations.Main.name) {
+        composable<Destinations.Main> {
             EnterAnimation {
                 BeginScreen(navController = navController)
             }
         }
-        composable(Destinations.Onboarding.name) {
+
+        composable<Destinations.Onboarding> {
             EnterAnimation {
                 PresentationScreen(navController)
             }
         }
-        composable(Destinations.Login.name) {
+
+        composable<Destinations.Login> {
             EnterAnimation {
                 LoginScreen()
             }
         }
 
-        composable(Destinations.Registration.name) {
+        composable<Destinations.Registration> {
             EnterAnimation {
 
             }
