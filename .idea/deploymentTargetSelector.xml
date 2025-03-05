@@ -5,18 +5,6 @@
       <SelectionState runConfigName="presentation">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="InputFieldPreview">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="InputFieldPreview (1)">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="PresentationScreenPreview">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="HomeScreenPreview">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
     </selectionStates>
   </component>
 </project>

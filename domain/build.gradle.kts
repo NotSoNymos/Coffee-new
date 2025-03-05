@@ -1,13 +1,14 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("com.google.devtools.ksp")
+    //id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.compose.domain"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 31
@@ -43,7 +44,9 @@ android {
 dependencies {
     implementation(project(":data"))
 
-    ksp(libs.hilt.android.compiler)
+    //ksp(libs.hilt.android.compiler)
+    kapt(libs.hilt.android.compiler)
+
     implementation(libs.hilt.android)
 
     implementation(libs.androidx.core.ktx)

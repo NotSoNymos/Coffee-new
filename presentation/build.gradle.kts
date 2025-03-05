@@ -1,18 +1,20 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.compose.compiler)
+    //id("com.google.devtools.ksp")
+    id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
 
 android {
     namespace = "com.compose.presentation"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.compose.presentation"
         minSdk = 31
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -32,17 +34,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
         resources {
@@ -53,16 +52,13 @@ android {
 }
 
 dependencies {
-    compileOnly (libs.android.lint.api)
-    compileOnly (libs.lint.checks)
-    lintChecks(libs.compose.lint.checks)
-
     implementation(project(":data"))
     implementation(project(":domain"))
 
     implementation(libs.hilt.android)
     implementation (libs.androidx.hilt.navigation.compose)
-    ksp(libs.hilt.android.compiler)
+    //ksp(libs.hilt.android.compiler)
+    kapt((libs.hilt.android.compiler))
     implementation (libs.coil.compose)
     implementation (libs.coil.gif)
     implementation (libs.retrofit)
@@ -85,4 +81,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

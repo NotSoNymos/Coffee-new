@@ -13,7 +13,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,8 +30,8 @@ object DecoratedButtonValues {
     private val DefaultColors: ButtonColors
         @Composable get() = ButtonColors(
             //contentColor = Color.Black,
-            contentColor = CoffeeTheme.colors.background,
-            containerColor = CoffeeTheme.colors.primary,
+            contentColor = CoffeeTheme.colors.primaryBackground,
+            containerColor = CoffeeTheme.colors.secondaryBackground,
             disabledContentColor = Color.Unspecified,
             disabledContainerColor = Color.Unspecified
         )

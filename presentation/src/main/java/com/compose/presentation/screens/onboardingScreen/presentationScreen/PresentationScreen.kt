@@ -52,7 +52,7 @@ fun PresentationScreen(navController: NavHostController, modifier: Modifier = Mo
                         color = Color.White,
                         shape = CustomShape, size = 15.dp
                     ), wormDotGraphic = DotGraphic(
-                        color = CoffeeTheme.colors.primary,
+                        color = CoffeeTheme.colors.secondaryBackground,
                         shape = CustomShape, size = 15.dp
                     )
                 ),

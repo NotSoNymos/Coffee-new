@@ -1,6 +1,7 @@
 package com.compose.data.utils
 
 import com.compose.data.models.OnboardingItemData
+import kotlinx.serialization.Serializable
 
 object Constants {
     val OnboardingItems = listOf(
@@ -25,9 +26,22 @@ object Constants {
         )
     )
 }
-sealed class Destinations{
-    object Main
-    object Onboarding
+
+sealed class Destinations {
+    @Serializable
     object Login
-    object Registration
+
+    @Serializable
+    object Onboarding
+
+    @Serializable
+    data class Scan(
+        val value: String
+    )
+
+    @Serializable
+    object Main
+
+    @Serializable
+    object Options
 }

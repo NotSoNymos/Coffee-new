@@ -13,22 +13,22 @@ val LightGrey = Color(0xFF828282)
 
 @Immutable
 data class AppColors(
-    val primary: Color,
-    val background: Color,
+    val primaryBackground: Color,
+    val secondaryBackground: Color,
     val text: Color
 )
 
 @SuppressLint("ComposeCompositionLocalUsage")
 val LocalAppColors = staticCompositionLocalOf {
     AppColors(
-        primary = Color.Unspecified,
-        background = Color.Unspecified,
+        primaryBackground = Color.Unspecified,
+        secondaryBackground = Color.Unspecified,
         text = Color.Unspecified
     )
 }
 
 val extendedColor = AppColors(
-    primary = Golden,
-    background = Brown,
+    primaryBackground = Brown,
+    secondaryBackground = Golden,
     text = Color.White
 )

@@ -67,7 +67,7 @@ fun OnboardingItem(
                         .width(300.dp)
                         .height(60.dp),
                 ) {
-                    navController.navigate(Destinations.Registration)
+                    navController.navigate(Destinations.Scan)
                 }
             }
             Spacer(modifier = Modifier.height(10.dp))

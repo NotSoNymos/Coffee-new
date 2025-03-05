@@ -1,13 +1,16 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("com.google.devtools.ksp")
+    //id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.plugin.serialization")
+    id("kotlin-kapt")
+
 }
 
 android {
     namespace = "com.compose.data"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 31
@@ -48,20 +51,29 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    ksp(libs.hilt.android.compiler)
+    //ksp(libs.hilt.android.compiler)
+    kapt(libs.hilt.android.compiler)
+
     implementation(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+
+    implementation(libs.kotlinx.serialization.json)
 }
 
 //Disable test auto-generation
 tasks.configureEach {
-    if (this.name.equals("lint")) {
+    if (this.name == "lint") {
         this.enabled = false
     }
     if (this.name.contains("Test")) {
         this.enabled = false
     }
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

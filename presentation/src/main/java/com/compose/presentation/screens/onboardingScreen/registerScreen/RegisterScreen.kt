@@ -54,23 +54,23 @@ fun RegisterScreen(modifier: Modifier = Modifier) {
         )
         Spacer(modifier = Modifier.height(50.dp))
         InputField(value = "Full Name", options = InputFieldOptions(), modifier = Modifier.height(60.dp)) {
-
+        //TODO
         }
         Spacer(modifier = Modifier.height(12.dp))
         InputField(value = "E-mail Address", options = InputFieldOptions(), modifier = Modifier.height(60.dp)) {
-
+        //TODO
         }
         Spacer(modifier = Modifier.height(12.dp))
         InputField(value = "Password", options = InputFieldOptions(), modifier = Modifier.height(60.dp)) {
-
+        //TODO
         }
         Spacer(modifier = Modifier.height(12.dp))
         InputField(value = "Confirm Password", options = InputFieldOptions(), modifier = Modifier.height(60.dp)) {
-
+        //TODO
         }
         Spacer(modifier = Modifier.height(30.dp))
         DecoratedButton(text = "Register", modifier = Modifier.fillMaxWidth().height(60.dp)) {
-
+        //TODO
         }
         Spacer(modifier = Modifier.height(15.dp))
         

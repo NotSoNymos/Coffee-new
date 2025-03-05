@@ -29,15 +29,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.compose.presentation.R
-import com.compose.presentation.composable.LinedText
 import com.compose.presentation.theme.CoffeeTheme
-import com.compose.presentation.theme.LightBrown
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier
-            .background(CoffeeTheme.colors.background)
+            .background(CoffeeTheme.colors.primaryBackground)
             .offset(20.dp)
             .fillMaxSize()
 
