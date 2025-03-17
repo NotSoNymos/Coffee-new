@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -35,16 +36,16 @@ fun AdvertCard(modifier: Modifier = Modifier) {
             .width(350.dp)
             .height(150.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(CoffeeTheme.colors.secondaryBackground.copy(alpha = 0.7f))
-            .padding(start = 15.dp, top = 25.dp, end = 15.dp, bottom = 15.dp),
+            .background(CoffeeTheme.colors.secondaryBackground.copy(alpha = 0.5f))
+            .padding(start = 15.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Column(
             modifier = Modifier
                 .weight(3f)
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.SpaceAround
+                .padding(top = 25.dp)
+                .fillMaxSize()
         ) {
             Text(
                 "Get 20% Discount On your First Order!",
@@ -53,6 +54,7 @@ fun AdvertCard(modifier: Modifier = Modifier) {
                 color = Color.White,
                 lineHeight = 26.sp
             )
+            Spacer(modifier = Modifier.height(10.dp))
             Text(
                 "Lorem ipsum dolor sit amet consectetur. Vestibulum eget blandit mattis ",
                 fontFamily = FontFamily(Font(R.font.poppins_regular)),
@@ -63,7 +65,7 @@ fun AdvertCard(modifier: Modifier = Modifier) {
         }
         Image(
             painter = painterResource(R.drawable.coffee_adv),
-            modifier = Modifier.weight(2f).height(120.dp).width(130.dp),
+            modifier = Modifier.weight(2f).height(150.dp).width(160.dp),
             contentDescription = null
         )
 
