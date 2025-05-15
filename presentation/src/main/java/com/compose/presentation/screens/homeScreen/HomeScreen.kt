@@ -43,7 +43,8 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         modifier = Modifier
             .background(CoffeeTheme.colors.primaryBackground)
             .padding(start = 20.dp, end = 20.dp)
-            .fillMaxSize()
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
         Spacer(modifier = Modifier.height(60.dp))
@@ -120,9 +121,9 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         }
         val testContent = listOf<String>("Test")
         Spacer(modifier = Modifier.height(15.dp))
-        LazyRow(modifier = Modifier.fillMaxWidth()) {
+        LazyRow(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
             items(items = testContent) { page ->
-                ProductPageCard(modifier = Modifier.fillMaxWidth()) //TODO: view model data
+                ProductPageCard(data = page, modifier = Modifier.fillMaxWidth()) //TODO: view model data
             }
         }
     }

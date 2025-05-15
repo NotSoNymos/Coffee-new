@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.compose.presentation.theme.CoffeeTheme
 
 @Composable
-fun ProductPageCard(modifier: Modifier = Modifier) {
+fun ProductPageCard(data: String, modifier: Modifier = Modifier) {
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
         Row(modifier = modifier, horizontalArrangement = Arrangement.SpaceAround) {
             ProductCard()
@@ -35,6 +35,6 @@ fun ProductPageCard(modifier: Modifier = Modifier) {
 @Composable
 private fun ProductPageCardPreview() {
     CoffeeTheme {
-        ProductPageCard(modifier = Modifier.fillMaxWidth())
+        ProductPageCard(data = "", modifier = Modifier.fillMaxWidth())
     }
 }
