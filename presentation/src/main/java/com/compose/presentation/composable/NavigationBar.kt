@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.compose.presentation.theme.Brown
+import com.compose.presentation.theme.CoffeeTheme
 import com.compose.presentation.theme.LightBrown
 
 @Composable
@@ -36,13 +37,14 @@ fun NavigationBar(modifier: Modifier = Modifier) {
     }
     var barSize by remember { mutableStateOf(IntSize.Zero) }
 
-    var decoratorToMove = with(LocalDensity.current) {
+    var barDecoratorToMove = with(LocalDensity.current) {
         (barSize.width / buttonCount.times(2)).times(1 + selectedIndex.times(2))
     }
 
     val currentDecoratorOffset by animateIntOffsetAsState(
-        targetValue = IntOffset(decoratorToMove, 0), label = "offset"
+        targetValue = IntOffset(barDecoratorToMove, 0), label = "offset"
     )
+
     Column {
         Box(
             modifier = Modifier
@@ -55,7 +57,7 @@ fun NavigationBar(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxSize()
                     .offset { currentDecoratorOffset }) {
-                drawCircle(LightBrown, size.minDimension * 2.5f, Offset(0f, 170f))
+                drawCircle(LightBrown, size.minDimension * 2.7f, Offset(0f, 170f))
             }
         }
         Row(
@@ -67,16 +69,18 @@ fun NavigationBar(modifier: Modifier = Modifier) {
                     barSize = it.size
                 }, verticalAlignment = Alignment.CenterVertically
         ) {
-            NavigationItem(modifier = Modifier.weight(buttonCount.toFloat())){
+            NavigationItem(
+                modifier = Modifier.weight(buttonCount.toFloat()), selectedIndex == 0
+            ) {
                 selectedIndex = 0
             }
-            NavigationItem(modifier = Modifier.weight(buttonCount.toFloat())){
+            NavigationItem(modifier = Modifier.weight(buttonCount.toFloat()), selectedIndex == 1){
                 selectedIndex = 1
             }
-            NavigationItem(modifier = Modifier.weight(buttonCount.toFloat())){
+            NavigationItem(modifier = Modifier.weight(buttonCount.toFloat()), selectedIndex == 2){
                 selectedIndex = 2
             }
-            NavigationItem(modifier = Modifier.weight(buttonCount.toFloat())){
+            NavigationItem(modifier = Modifier.weight(buttonCount.toFloat()), selectedIndex == 3){
                 selectedIndex = 3
             }
         }
@@ -86,5 +90,7 @@ fun NavigationBar(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun NavigationBarPreview() {
-    NavigationBar()
+    CoffeeTheme {
+        NavigationBar()
+    }
 }

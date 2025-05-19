@@ -15,6 +15,7 @@ val LightGrey = Color(0xFF828282)
 data class AppColors(
     val primaryBackground: Color,
     val secondaryBackground: Color,
+    val tertiaryBackground: Color,
     val text: Color
 )
 
@@ -23,6 +24,7 @@ val LocalAppColors = staticCompositionLocalOf {
     AppColors(
         primaryBackground = Color.Unspecified,
         secondaryBackground = Color.Unspecified,
+        tertiaryBackground = Color.Unspecified,
         text = Color.Unspecified
     )
 }
@@ -30,5 +32,6 @@ val LocalAppColors = staticCompositionLocalOf {
 val extendedColor = AppColors(
     primaryBackground = Brown,
     secondaryBackground = Golden,
+    tertiaryBackground = LightBrown,
     text = Color.White
 )
