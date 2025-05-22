@@ -1,4 +1,4 @@
-package com.compose.presentation.screens.homeScreen
+package com.compose.presentation.screens.catalogScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -38,7 +38,7 @@ import com.compose.presentation.composable.cards.ProductPageCard
 import com.compose.presentation.theme.CoffeeTheme
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun CatalogScreen(modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier
             .background(CoffeeTheme.colors.primaryBackground)
@@ -131,8 +131,8 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-private fun HomeScreenPreview() {
+private fun CatalogScreenPreview() {
     CoffeeTheme {
-        HomeScreen()
+        CatalogScreen()
     }
 }

@@ -1,22 +1,24 @@
 package com.compose.presentation.composable
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.compose.data.utils.Destinations
-import com.compose.presentation.screens.homeScreen.HomeScreen
-import com.compose.presentation.screens.onboardingScreen.beginScreen.BeginScreen
+import com.compose.presentation.screens.catalogScreen.CatalogScreen
 import com.compose.presentation.screens.onboardingScreen.loginScreen.LoginScreen
-import com.compose.presentation.screens.onboardingScreen.presentationScreen.PresentationScreen
 
 @Composable
-fun NavGraph(navController: NavHostController) {
+fun NavGraph(modifier: Modifier = Modifier, navController: NavHostController, skipAuth: Boolean = false) {
     NavHost(
-        navController = navController, startDestination = Destinations.Main
+        navController = navController, startDestination = if (skipAuth) Destinations.Main else Destinations.Login
     ) {
+        composable<Destinations.Login> {
+            LoginScreen()
+        }
         composable<Destinations.Main>{
-            HomeScreen()
+            CatalogScreen()
         }
     }
 }

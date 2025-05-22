@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.converter.gson)
 
     implementation(libs.kotlinx.serialization.json)
+    implementation(kotlin("reflect"))
 }
 
 //Disable test auto-generation

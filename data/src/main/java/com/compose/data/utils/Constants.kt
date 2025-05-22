@@ -44,4 +44,23 @@ sealed class Destinations {
 
     @Serializable
     object Options
+
+
+    companion object {
+        var bottomBarEnabledItems = listOf(
+            Main,
+            Onboarding
+        )
+
+        fun tryParse(objName: String): Any? {
+            return Destinations::class.nestedClasses
+                .firstOrNull { it.simpleName == objName && it.objectInstance != null }
+                ?.objectInstance
+        }
+
+        fun isBottomBarShouldBeShown(destinationName: String): Boolean {
+            val obj = tryParse(destinationName)
+            return bottomBarEnabledItems.contains(obj)
+        }
+    }
 }
