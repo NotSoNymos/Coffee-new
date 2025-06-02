@@ -23,3 +23,4 @@ rootProject.name = "compose"
 include(":presentation")
 include(":domain")
 include(":data")
+include(":models")

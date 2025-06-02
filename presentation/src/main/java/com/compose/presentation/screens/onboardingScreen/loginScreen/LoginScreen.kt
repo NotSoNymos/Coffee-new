@@ -57,36 +57,32 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             )
             Spacer(modifier = Modifier.height(50.dp))
             InputField(
-                value = "Full Name",
                 options = InputFieldOptions(),
-                modifier = Modifier.height(60.dp)
-            ) {
-
-            }
+                modifier = Modifier.height(60.dp),
+                placeholder = "Full Name",
+                onValueChange = {}//viewModel::setName
+            )
             Spacer(modifier = Modifier.height(12.dp))
             InputField(
-                value = "E-mail Address",
                 options = InputFieldOptions(),
-                modifier = Modifier.height(60.dp)
-            ) {
-
-            }
+                modifier = Modifier.height(60.dp),
+                placeholder = "E-mail Address",
+                onValueChange = {}//viewModel::setName
+            )
             Spacer(modifier = Modifier.height(12.dp))
             InputField(
-                value = "Password",
                 options = InputFieldOptions(),
-                modifier = Modifier.height(60.dp)
-            ) {
-
-            }
+                modifier = Modifier.height(60.dp),
+                placeholder = "Password",
+                onValueChange = {}//viewModel::setName
+            )
             Spacer(modifier = Modifier.height(12.dp))
             InputField(
-                value = "Confirm Password",
                 options = InputFieldOptions(),
-                modifier = Modifier.height(60.dp)
-            ) {
-
-            }
+                modifier = Modifier.height(60.dp),
+                placeholder = "Confirm Password",
+                onValueChange = {}//viewModel::setName
+            )
             Spacer(modifier = Modifier.height(30.dp))
             DecoratedButton(
                 text = "Register", modifier = Modifier

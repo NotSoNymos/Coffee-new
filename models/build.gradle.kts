@@ -1,13 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    //id("com.google.devtools.ksp")
-    id("com.google.dagger.hilt.android")
-    id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.compose.domain"
+    namespace = "com.compose.models"
     compileSdk = 35
 
     defaultConfig {
@@ -27,28 +24,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    packaging{
-        resources{
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-            excludes += "/META-INF/gradle/incremental.annotation.processors"
-        }
+        jvmTarget = "11"
     }
 }
 
 dependencies {
-    implementation(project(":models"))
-    implementation(project(":data"))
-
-    //ksp(libs.hilt.android.compiler)
-    kapt(libs.hilt.android.compiler)
-
-    implementation(libs.hilt.android)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -56,16 +40,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation(libs.retrofit)
-}
-
-//Disable test auto-generation
-tasks.configureEach {
-    if (this.name.equals("lint")) {
-        this.enabled = false
-    }
-    if (this.name.contains("Test")) {
-        this.enabled = false
-    }
 }

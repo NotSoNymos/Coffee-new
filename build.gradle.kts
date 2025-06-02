@@ -8,4 +8,5 @@ plugins {
     //noinspection GradleDependency
     //id("com.google.devtools.ksp") version "2.1.10-1.0.31" apply false
     id("org.jetbrains.kotlin.plugin.serialization") version "1.7.10" apply false
+    alias(libs.plugins.jetbrains.kotlin.jvm) apply false
 }

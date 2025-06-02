@@ -19,11 +19,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,6 +33,7 @@ import com.compose.presentation.theme.Grey
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlin.reflect.KProperty0
 
 /**
  * Configuration for an [InputField].
@@ -81,13 +83,13 @@ class InputFieldOptions(
 
 @Composable
 fun InputField(
-    value: String,
     options: InputFieldOptions,
     modifier: Modifier = Modifier,
     shape: Shape = RoundedCornerShape(10.dp),
     placeholder: String = "",
     onValueChange: (String) -> Unit
 ) {
+    var text = remember { mutableStateOf("") }
     val containerColor = options.containerColor
     Row(
         modifier = modifier.then(
@@ -96,7 +98,7 @@ fun InputField(
                 .background(containerColor)
         ), verticalAlignment = Alignment.CenterVertically
     ) {
-        TextField(value = value,
+        TextField(value = text.value,
             modifier = Modifier
                 .padding(options.paddingValues)
                 .fillMaxWidth(),
@@ -105,8 +107,10 @@ fun InputField(
                 unfocusedIndicatorColor = Color.Transparent,
                 focusedContainerColor = containerColor,
                 focusedIndicatorColor = Color.Transparent,
-            ),
-            onValueChange = onValueChange,
+            ), onValueChange = { value ->
+                onValueChange(value)
+                text.value = value
+            },
             textStyle = CoffeeTheme.typography.displaySmall,
             placeholder = {
                 Text(
@@ -143,7 +147,7 @@ internal class InputFieldSample {
         Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
             Column {
                 InputField(
-                    value = sampleViewModel.state.collectAsState().value.data,
+                    //placeholder = sampleViewModel.state.collectAsState().value.data,
                     options = InputFieldOptions(),
                     modifier = Modifier
                         .height(60.dp)

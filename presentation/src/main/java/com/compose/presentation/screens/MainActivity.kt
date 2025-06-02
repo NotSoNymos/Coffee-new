@@ -24,45 +24,45 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    val viewModel by viewModels<SplashScreenViewModel>()
+		val viewModel by viewModels<SplashScreenViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        actionBar?.hide()
-        window.insetsController?.hide(WindowInsets.Type.statusBars())
-        viewModel.checkLogin().apply {
-            setContent {
-                CoffeeTheme {
-                    val state = viewModel.state.collectAsState().value
-                    val navController = rememberNavController()
+		override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		enableEdgeToEdge()
+		actionBar?.hide()
+		window.insetsController?.hide(WindowInsets.Type.statusBars())
+		viewModel.checkLogin().apply {
+			setContent {
+				CoffeeTheme {
+					val state = viewModel.state.collectAsState().value
+					val navController = rememberNavController()
 
-                    var isBottomBarShouldBeShown = remember {
-                        mutableStateOf(
-                            Destinations.isBottomBarShouldBeShown(navController.currentDestination?.route.toString().substringAfterLast("."))
-                        )
-                    }
+					var isBottomBarShouldBeShown = remember {
+						mutableStateOf(
+							Destinations.isBottomBarShouldBeShown(navController.currentDestination?.route.toString().substringAfterLast("."))
+						)
+					}
 
-                    navController.addOnDestinationChangedListener { navController, navDestination, bundle ->
-                        isBottomBarShouldBeShown.value = Destinations.isBottomBarShouldBeShown(
-                            navController.currentDestination?.route.toString().substringAfterLast(".")
-                        )
-                    }
-                    Scaffold(modifier = Modifier.fillMaxSize(), bottomBar = {
-                        if (isBottomBarShouldBeShown.value) {
-                            NavigationBar()
-                        }
-                    }) { innerPadding ->
-                        NavGraph(
-                            navController = navController,
-                            modifier = Modifier
-                                .padding(innerPadding)
-                                .fillMaxSize(),
-                            skipAuth = state.skipAuth
-                        )
-                    }
-                }
-            }
-        }
-    }
+					navController.addOnDestinationChangedListener { navController, navDestination, bundle ->
+						isBottomBarShouldBeShown.value = Destinations.isBottomBarShouldBeShown(
+							navController.currentDestination?.route.toString().substringAfterLast(".")
+						)
+					}
+					Scaffold(modifier = Modifier.fillMaxSize(), bottomBar = {
+						if (isBottomBarShouldBeShown.value) {
+							NavigationBar()
+						}
+					}) { innerPadding ->
+						NavGraph(
+							navController = navController,
+							modifier = Modifier
+								.padding(innerPadding)
+								.fillMaxSize(),
+							skipAuth = state.skipAuth
+						)
+					}
+				}
+			}
+		}
+	}
 }

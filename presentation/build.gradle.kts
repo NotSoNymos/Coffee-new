@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.compose.presentation"
-        minSdk = 31
+        minSdk = 35
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -52,6 +52,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":models"))
     implementation(project(":data"))
     implementation(project(":domain"))
 
