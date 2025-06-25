@@ -10,28 +10,41 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(val useCase: RegisterUseCase) : ViewModel() {
+class RegisterViewModel @Inject constructor(val useCase: RegisterUseCase?) : ViewModel() {
     private val _credentials = mutableStateOf(RegisterCredentials()).value
-    private val _state = MutableStateFlow<RegisterState>(
+    private val _state = MutableStateFlow(
         RegisterState()
     )
 
     val state: StateFlow<RegisterState>
         get() = _state.asStateFlow()
 
-    val setName = { name: String -> _credentials.name = name }
+    fun setName(name: String) {
+        _credentials.name = name
+    }
 
-    val setEmail = { email: String -> _credentials.email = email }
+    fun setEmail(email: String) {
+        _credentials.email = email
+    }
 
-    val setPassword = { password: String -> _credentials.password = password }
+    fun setPassword(password: String) {
+        _credentials.password = password
+    }
 
-    val setPasswordConfirmation =
-        { passwordConfirmation: String -> _credentials.passwordConfirmation = passwordConfirmation }
+    fun setPasswordConfirmation(passwordConfirmation: String) {
+        _credentials.passwordConfirmation = passwordConfirmation
+    }
 
-    fun register() =
-        viewModelScope.launch(Dispatchers.IO) { useCase.register(_credentials.serialize()) }
+    fun register() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _state.update { v -> v.copy(isLoading = true) }
+            //_state.emit(_state.value.copy(isLoading = true))
+            useCase?.register(_credentials)
+        }
+    }
 }

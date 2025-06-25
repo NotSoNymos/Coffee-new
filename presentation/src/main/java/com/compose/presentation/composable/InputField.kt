@@ -98,7 +98,8 @@ fun InputField(
                 .background(containerColor)
         ), verticalAlignment = Alignment.CenterVertically
     ) {
-        TextField(value = text.value,
+        TextField(
+            value = text.value,
             modifier = Modifier
                 .padding(options.paddingValues)
                 .fillMaxWidth(),
@@ -107,7 +108,8 @@ fun InputField(
                 unfocusedIndicatorColor = Color.Transparent,
                 focusedContainerColor = containerColor,
                 focusedIndicatorColor = Color.Transparent,
-            ), onValueChange = { value ->
+            ),
+            onValueChange = { value ->
                 onValueChange(value)
                 text.value = value
             },
@@ -143,20 +145,20 @@ internal class InputFieldSample {
     @Composable
     private fun InputFieldPreview() {
         CoffeeTheme {
-        val sampleViewModel = SampleViewModel()
-        Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
-            Column {
-                InputField(
-                    //placeholder = sampleViewModel.state.collectAsState().value.data,
-                    options = InputFieldOptions(),
-                    modifier = Modifier
-                        .height(60.dp)
-                        .fillMaxWidth(),
-                    placeholder = "E-mail Address",
-                    onValueChange = sampleViewModel::setText
-                )
+            val sampleViewModel = SampleViewModel()
+            Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
+                Column {
+                    InputField(
+                        //placeholder = sampleViewModel.state.collectAsState().value.data,
+                        options = InputFieldOptions(),
+                        modifier = Modifier
+                            .height(60.dp)
+                            .fillMaxWidth(),
+                        placeholder = "E-mail Address",
+                        onValueChange = sampleViewModel::setText
+                    )
+                }
             }
         }
-            }
     }
 }

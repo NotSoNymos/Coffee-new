@@ -1,6 +1,5 @@
 package com.compose.presentation.screens.onboardingScreen.registerScreen
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -30,7 +31,15 @@ import com.compose.presentation.theme.CoffeeTheme
 fun RegisterScreen(
     modifier: Modifier = Modifier, viewModel: RegisterViewModel = hiltViewModel<RegisterViewModel>()
 ) {
-    val state = viewModel.state.collectAsState()
+    val state = viewModel.state.collectAsState().value
+    if (state.isLoading){
+        CircularProgressIndicator(
+            modifier = Modifier.width(64.dp),
+            color = CoffeeTheme.colors.text,
+            trackColor = CoffeeTheme.colors.secondaryBackground,
+        )
+        return
+    }
     Column(
         modifier = modifier.then(
             Modifier
@@ -63,28 +72,28 @@ fun RegisterScreen(
             options = InputFieldOptions(),
             modifier = Modifier.height(60.dp),
             placeholder = "Full Name",
-            onValueChange = viewModel::setName.get()
+            onValueChange = viewModel::setName
         )
         Spacer(modifier = Modifier.height(12.dp))
         InputField(
             placeholder = "E-mail Address",
             options = InputFieldOptions(),
             modifier = Modifier.height(60.dp),
-            onValueChange = viewModel::setEmail.get()
+            onValueChange = viewModel::setEmail
         )
         Spacer(modifier = Modifier.height(12.dp))
         InputField(
             placeholder = "Password",
             options = InputFieldOptions(),
             modifier = Modifier.height(60.dp),
-            onValueChange = viewModel::setPassword.get()
+            onValueChange = viewModel::setPassword
         )
         Spacer(modifier = Modifier.height(12.dp))
         InputField(
             placeholder = "Confirm Password",
             options = InputFieldOptions(),
             modifier = Modifier.height(60.dp),
-            onValueChange = viewModel::setPasswordConfirmation.get()
+            onValueChange = viewModel::setPasswordConfirmation
         )
         Spacer(modifier = Modifier.height(30.dp))
         DecoratedButton(
@@ -101,8 +110,8 @@ fun RegisterScreen(
 
 @Preview
 @Composable
-private fun LoginScreenPreview() {
+private fun RegisterScreenPreview() {
     CoffeeTheme {
-        RegisterScreen()
+        RegisterScreen(viewModel = RegisterViewModel(null))
     }
 }
